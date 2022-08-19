@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OmnaeSkuVaultWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultAccountsController.AddSkuVaultAccount(OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts.Dtos.SkuVaultAccountForCreationDto)">
+            <summary>
+            Creates a new SkuVaultAccount record.
+            </summary>
+            <response code="201">SkuVaultAccount created.</response>
+            <response code="400">SkuVaultAccount has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultAccountsController.GetSkuVaultAccount(System.Guid)">
+            <summary>
+            Gets a single SkuVaultAccount by ID.
+            </summary>
+            <response code="200">SkuVaultAccount record returned successfully.</response>
+            <response code="400">SkuVaultAccount has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultAccountsController.GetSkuVaultAccounts(OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts.Dtos.SkuVaultAccountParametersDto)">
+             <summary>
+             Gets a list of all SkuVaultAccounts.
+             </summary>
+             <response code="200">SkuVaultAccount list returned successfully.</response>
+             <response code="400">SkuVaultAccount has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultAccountsController.UpdateSkuVaultAccount(System.Guid,OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts.Dtos.SkuVaultAccountForUpdateDto)">
+            <summary>
+            Updates an entire existing SkuVaultAccount.
+            </summary>
+            <response code="204">SkuVaultAccount updated.</response>
+            <response code="400">SkuVaultAccount has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultAccountsController.DeleteSkuVaultAccount(System.Guid)">
+            <summary>
+            Deletes an existing SkuVaultAccount record.
+            </summary>
+            <response code="204">SkuVaultAccount deleted.</response>
+            <response code="400">SkuVaultAccount has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.AddSkuVaultToken(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenForCreationDto)">
+            <summary>
+            Creates a new SkuVaultToken record.
+            </summary>
+            <response code="201">SkuVaultToken created.</response>
+            <response code="400">SkuVaultToken has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.GetSkuVaultToken(System.Guid)">
+            <summary>
+            Gets a single SkuVaultToken by ID.
+            </summary>
+            <response code="200">SkuVaultToken record returned successfully.</response>
+            <response code="400">SkuVaultToken has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.GetSkuVaultTokens(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenParametersDto)">
+             <summary>
+             Gets a list of all SkuVaultTokens.
+             </summary>
+             <response code="200">SkuVaultToken list returned successfully.</response>
+             <response code="400">SkuVaultToken has missing/invalid values.</response>
+             <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+             <remarks>
+             Requests can be narrowed down with a variety of query string values:
+             ## Query String Parameters
+             - **PageNumber**: An integer value that designates the page of records that should be returned.
+             - **PageSize**: An integer value that designates the number of records returned on the given page that you would like to return. This value is capped by the internal MaxPageSize.
+             - **SortOrder**: A comma delimited ordered list of property names to sort by. Adding a `-` before the name switches to sorting descendingly.
+             - **Filters**: A comma delimited list of fields to filter by formatted as `{Name}{Operator}{Value}` where
+                 - {Name} is the name of a filterable property. You can also have multiple names (for OR logic) by enclosing them in brackets and using a pipe delimiter, eg. `(LikeCount|CommentCount)>10` asks if LikeCount or CommentCount is >10
+                 - {Operator} is one of the Operators below
+                 - {Value} is the value to use for filtering. You can also have multiple values (for OR logic) by using a pipe delimiter, eg.`Title@= new|hot` will return posts with titles that contain the text "new" or "hot"
+            
+                | Operator | Meaning                       | Operator  | Meaning                                      |
+                | -------- | ----------------------------- | --------- | -------------------------------------------- |
+                | `==`     | Equals                        |  `!@=`    | Does not Contains                            |
+                | `!=`     | Not equals                    |  `!_=`    | Does not Starts with                         |
+                | `>`      | Greater than                  |  `@=*`    | Case-insensitive string Contains             |
+                | `&lt;`   | Less than                     |  `_=*`    | Case-insensitive string Starts with          |
+                | `>=`     | Greater than or equal to      |  `==*`    | Case-insensitive string Equals               |
+                | `&lt;=`  | Less than or equal to         |  `!=*`    | Case-insensitive string Not equals           |
+                | `@=`     | Contains                      |  `!@=*`   | Case-insensitive string does not Contains    |
+                | `_=`     | Starts with                   |  `!_=*`   | Case-insensitive string does not Starts with |
+             </remarks>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.UpdateSkuVaultToken(System.Guid,OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenForUpdateDto)">
+            <summary>
+            Updates an entire existing SkuVaultToken.
+            </summary>
+            <response code="204">SkuVaultToken updated.</response>
+            <response code="400">SkuVaultToken has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.DeleteSkuVaultToken(System.Guid)">
+            <summary>
+            Deletes an existing SkuVaultToken record.
+            </summary>
+            <response code="204">SkuVaultToken deleted.</response>
+            <response code="400">SkuVaultToken has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Databases.EntityConfigurations.SkuVaultAccountConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts.SkuVaultAccount})">
+            <summary>
+            The database configuration for SkuVaultAccounts. 
+            </summary>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Databases.EntityConfigurations.SkuVaultTokenConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.SkuVaultToken})">
+            <summary>
+            The database configuration for SkuVaultTokens. 
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.Line1">
+            <summary>
+            Address line 1 (e.g., street, PO Box, or company name).
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.Line2">
+            <summary>
+            Address line 2 (e.g., apartment, suite, unit, or building).
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.City">
+            <summary>
+            City, district, suburb, town, or village.
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.State">
+            <summary>
+            State, county, province, or region.
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.PostalCode">
+            <summary>
+            ZIP or postal code.
+            </summary>
+        </member>
+        <member name="P:OmnaeSkuVaultWebApi.Domain.Addresses.Address.Country">
+            <summary>
+            Two-letter country code <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">(ISO 3166-1 alpha-2)</a>.
+            </summary>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Extensions.Services.WebAppServiceConfiguration.AddBoundaryServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">
+            <summary>
+            Registers all services in the assembly of the given interface.
+            </summary>
+        </member>
+    </members>
+</doc>
