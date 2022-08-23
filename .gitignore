@@ -302,3 +302,7 @@ __pycache__/
 #ENV
 .env
 
+OmnaeSkuVaultWebApi/src/OmnaeSkuVaultWebApi/appsettings.Development.json
+OmnaeSkuVaultWebApi/src/OmnaeSkuVaultWebApi/appsettings.Staging.json
+OmnaeSkuVaultWebApi/src/OmnaeSkuVaultWebApi/appsettings.json
+OmnaeSkuVaultWebApi/src/OmnaeSkuVaultWebApi/Properties/launchSettings.json

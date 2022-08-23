@@ -2,6 +2,7 @@ using Serilog;
 using OmnaeSkuVaultWebApi.Extensions.Application;
 using OmnaeSkuVaultWebApi.Extensions.Host;
 using OmnaeSkuVaultWebApi.Extensions.Services;
+using OmnaeSkuVaultWebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddLoggingConfiguration(builder.Environment);
@@ -53,5 +54,12 @@ finally
     Log.CloseAndFlush();
 }
 
+
 // Make the implicit Program class public so the functional test project can access it
-public partial class Program { }
+public partial class Program {
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+                
+}           

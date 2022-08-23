@@ -26,6 +26,7 @@ using DotNet.Testcontainers.Containers.Modules.Abstractions;
 using DotNet.Testcontainers.Containers.Modules.Databases;
 using FluentAssertions;
 using FluentAssertions.Extensions;
+using System.Runtime.InteropServices;
 
 [SetUpFixture]
 public class TestFixture
@@ -68,6 +69,22 @@ public class TestFixture
         SetupDateAssertions();
         await EnsureDatabase();
         await ResetState();
+    }
+
+    private static void SetupDateAssertions()
+    {
+        // close to equivalency required to reconcile precision differences between EF and Postgres
+        AssertionOptions.AssertEquivalencyUsing(options =>
+        {
+            options.Using<DateTime>(ctx => ctx.Subject
+                .Should()
+                .BeCloseTo(ctx.Expectation, 1.Seconds())).WhenTypeIs<DateTime>();
+            options.Using<DateTimeOffset>(ctx => ctx.Subject
+                .Should()
+                .BeCloseTo(ctx.Expectation, 1.Seconds())).WhenTypeIs<DateTimeOffset>();
+
+            return options;
+        });
     }
 
     private static async Task EnsureDatabase()

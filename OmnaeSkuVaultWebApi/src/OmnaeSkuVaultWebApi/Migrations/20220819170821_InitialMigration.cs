@@ -9,8 +9,12 @@ namespace OmnaeSkuVaultWebApi.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "finance");
+
             migrationBuilder.CreateTable(
                 name: "sku_vault_accounts",
+                schema: "finance",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -31,6 +35,7 @@ namespace OmnaeSkuVaultWebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "sku_vault_tokens",
+                schema: "finance",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
