@@ -3,6 +3,7 @@ using OmnaeSkuVaultWebApi.Extensions.Application;
 using OmnaeSkuVaultWebApi.Extensions.Host;
 using OmnaeSkuVaultWebApi.Extensions.Services;
 using OmnaeSkuVaultWebApi;
+using OmnaeSkuVaultWebApi.Controllers.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddLoggingConfiguration(builder.Environment);
@@ -12,7 +13,10 @@ var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+    //p.UseDeveloperExceptionPage();
+
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {

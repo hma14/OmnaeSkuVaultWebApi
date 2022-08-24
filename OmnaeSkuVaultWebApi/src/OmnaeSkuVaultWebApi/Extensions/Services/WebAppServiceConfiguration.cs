@@ -50,6 +50,11 @@ public static class WebAppServiceConfiguration
 
         builder.Services.AddHealthChecks();
         builder.Services.AddSwaggerExtension();
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+
     }
 
     /// <summary>

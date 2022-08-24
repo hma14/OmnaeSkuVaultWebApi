@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OmnaeSkuVaultWebApi.Databases;
+using OmnaeSkuVaultWebApi.Extensions.Services;
 using OmnaeSkuVaultWebApi.Services;
 
 namespace OmnaeSkuVaultWebApi
@@ -29,12 +30,25 @@ namespace OmnaeSkuVaultWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            //services.AddMvc();
+            services.AddMvc();
 
             services.AddSingleton<IConfiguration>(_config);
 
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddApiVersioningExtension();
+
+#if false
             string conn = _config.GetConnectionString("OmnaeFinanceServiceDb");
             services.AddDbContext<FinanceServiceDbContext>(options => options.UseSqlServer(conn));
+#else
+
+            services.AddDbContext<FinanceServiceDbContext>(options =>
+                    options.UseSqlServer(
+                        _config.GetConnectionString("OmnaeFinanceServiceDb"),
+                        builder => builder.MigrationsAssembly(typeof(FinanceServiceDbContext).Assembly.FullName)));
+#endif
+
+            services.AddControllers().AddControllersAsServices();
         }
 
     }

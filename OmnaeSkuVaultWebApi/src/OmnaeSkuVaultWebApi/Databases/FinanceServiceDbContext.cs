@@ -1,17 +1,17 @@
 namespace OmnaeSkuVaultWebApi.Databases;
 
-using OmnaeSkuVaultWebApi.Domain;
-using OmnaeSkuVaultWebApi.Databases.EntityConfigurations;
-using OmnaeSkuVaultWebApi.Services;
-using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens;
-using OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Query;
+using OmnaeSkuVaultWebApi.Databases.EntityConfigurations;
+using OmnaeSkuVaultWebApi.Domain;
+using OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts;
+using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens;
+using OmnaeSkuVaultWebApi.Services;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Query;
 
 public class FinanceServiceDbContext : DbContext
 {
@@ -33,6 +33,7 @@ public class FinanceServiceDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("finance");
         base.OnModelCreating(modelBuilder);
         modelBuilder.FilterSoftDeletedRecords();
         /* any query filters added after this will override soft delete 
@@ -57,11 +58,13 @@ public class FinanceServiceDbContext : DbContext
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         UpdateAuditFields();
+
         var result = await base.SaveChangesAsync(cancellationToken);
         await _dispatchDomainEvents();
         return result;
+
     }
-    
+
     private async Task _dispatchDomainEvents()
     {
         var domainEventEntities = ChangeTracker.Entries<BaseEntity>()
@@ -77,7 +80,7 @@ public class FinanceServiceDbContext : DbContext
                 await _mediator.Publish(entityDomainEvent);
         }
     }
-        
+
     private void UpdateAuditFields()
     {
         var now = DateTime.UtcNow;
@@ -93,7 +96,7 @@ public class FinanceServiceDbContext : DbContext
                 case EntityState.Modified:
                     entry.Entity.UpdateModifiedProperties(now, _currentUserService?.UserId);
                     break;
-                
+
                 case EntityState.Deleted:
                     entry.State = EntityState.Modified;
                     entry.Entity.UpdateModifiedProperties(now, _currentUserService?.UserId);

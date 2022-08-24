@@ -58,7 +58,7 @@ public class SkuVaultTokensController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpGet("{id:guid}", Name = "GetSkuVaultToken")]
+    [HttpGet("{id}", Name = "GetSkuVaultToken")]
     public async Task<ActionResult<SkuVaultTokenDto>> GetSkuVaultToken(Guid id)
     {
         var query = new GetSkuVaultToken.SkuVaultTokenQuery(id);
@@ -136,7 +136,7 @@ public class SkuVaultTokensController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpPut("{id:guid}", Name = "UpdateSkuVaultToken")]
+    [HttpPut("{id}", Name = "UpdateSkuVaultToken")]
     public async Task<IActionResult> UpdateSkuVaultToken(Guid id, SkuVaultTokenForUpdateDto skuVaultToken)
     {
         var command = new UpdateSkuVaultToken.UpdateSkuVaultTokenCommand(id, skuVaultToken);
@@ -156,7 +156,7 @@ public class SkuVaultTokensController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpDelete("{id:guid}", Name = "DeleteSkuVaultToken")]
+    [HttpDelete("{id}", Name = "DeleteSkuVaultToken")]
     public async Task<ActionResult> DeleteSkuVaultToken(Guid id)
     {
         var command = new DeleteSkuVaultToken.DeleteSkuVaultTokenCommand(id);

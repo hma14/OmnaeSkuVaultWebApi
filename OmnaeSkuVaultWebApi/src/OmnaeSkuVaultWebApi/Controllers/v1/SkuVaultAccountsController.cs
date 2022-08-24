@@ -58,7 +58,7 @@ public class SkuVaultAccountsController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpGet("{id:guid}", Name = "GetSkuVaultAccount")]
+    [HttpGet("{id}", Name = "GetSkuVaultAccount")]
     public async Task<ActionResult<SkuVaultAccountDto>> GetSkuVaultAccount(Guid id)
     {
         var query = new GetSkuVaultAccount.SkuVaultAccountQuery(id);
@@ -136,7 +136,7 @@ public class SkuVaultAccountsController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpPut("{id:guid}", Name = "UpdateSkuVaultAccount")]
+    [HttpPut("{id}", Name = "UpdateSkuVaultAccount")]
     public async Task<IActionResult> UpdateSkuVaultAccount(Guid id, SkuVaultAccountForUpdateDto skuVaultAccount)
     {
         var command = new UpdateSkuVaultAccount.UpdateSkuVaultAccountCommand(id, skuVaultAccount);
@@ -156,7 +156,7 @@ public class SkuVaultAccountsController: ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [Produces("application/json")]
-    [HttpDelete("{id:guid}", Name = "DeleteSkuVaultAccount")]
+    [HttpDelete("{id}", Name = "DeleteSkuVaultAccount")]
     public async Task<ActionResult> DeleteSkuVaultAccount(Guid id)
     {
         var command = new DeleteSkuVaultAccount.DeleteSkuVaultAccountCommand(id);
