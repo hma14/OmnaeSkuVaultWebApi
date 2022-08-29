@@ -66,13 +66,6 @@
             <response code="400">SkuVaultAccount has missing/invalid values.</response>
             <response code="500">There was an error on the server while creating the SkuVaultAccount.</response>
         </member>
-        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultController.StoreSkuVaultToken(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenForCreationDto)">
-            <summary>
-            Store SkuVault Token info into database
-            </summary>
-            <param name="skuVaultTokenForCreation">SkuVaultTokenForCreationDto</param>
-            <returns></returns>
-        </member>
         <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.AddSkuVaultToken(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenForCreationDto)">
             <summary>
             Creates a new SkuVaultToken record.
@@ -134,6 +127,13 @@
             <response code="204">SkuVaultToken deleted.</response>
             <response code="400">SkuVaultToken has missing/invalid values.</response>
             <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.StoreSkuVaultToken(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenForCreationDto)">
+            <summary>
+            Store SkuVault Token info into database
+            </summary>
+            <param name="skuVaultTokenForCreation">SkuVaultTokenForCreationDto</param>
+            <returns></returns>
         </member>
         <member name="M:OmnaeSkuVaultWebApi.Databases.EntityConfigurations.SkuVaultAccountConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{OmnaeSkuVaultWebApi.Domain.SkuVaultAccounts.SkuVaultAccount})">
             <summary>

@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Resources;
 using Sieve.Services;
 using System.Reflection;
+using SkuVaultApiWrapper;
 
 public static class WebAppServiceConfiguration
 {
@@ -46,6 +47,8 @@ public static class WebAppServiceConfiguration
             typeAdapterConfig.Scan(Assembly.GetExecutingAssembly());
             var mapperConfig = new Mapper(typeAdapterConfig);
             builder.Services.AddSingleton<IMapper>(mapperConfig);
+
+            
         }
 
         builder.Services.AddHealthChecks();
@@ -54,7 +57,8 @@ public static class WebAppServiceConfiguration
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-
+        // SkuVault Api
+        builder.Services.AddScoped<ISkuVaultApiClient, SkuVaultApiClient>();
     }
 
     /// <summary>

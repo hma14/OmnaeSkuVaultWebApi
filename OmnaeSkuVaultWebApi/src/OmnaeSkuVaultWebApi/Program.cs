@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddLoggingConfiguration(builder.Environment);
 
 builder.ConfigureServices();
+
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
@@ -41,6 +42,9 @@ app.UseEndpoints(endpoints =>
 });
 
 app.UseSwaggerExtension();
+
+app.MapControllers();
+app.Run();
 
 try
 {

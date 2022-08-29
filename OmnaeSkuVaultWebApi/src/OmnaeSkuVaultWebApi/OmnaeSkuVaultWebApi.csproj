@@ -13,6 +13,9 @@
     <DocumentationFile>OmnaeSkuVaultWebApi.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1591;</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\v1\SkuVaultController.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ardalis.SmartEnum" Version="2.1.0" />
@@ -66,6 +69,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\OmnaeSkuVaultWebApi\Omnae.SkuVault.WebApi\SkuVault\SkuVaultApiWrapper\SkuVaultApiWrapper.csproj" />
     <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 

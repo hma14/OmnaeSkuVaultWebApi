@@ -11,17 +11,24 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Threading.Tasks;
 using System.Threading;
 using MediatR;
+using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Services;
+using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens;
+using MapsterMapper;
 
 [ApiController]
 [Route("api/skuvaulttokens")]
 [ApiVersion("1.0")]
 public class SkuVaultTokensController: ControllerBase
 {
+    private readonly IMapper _mapper;
     private readonly IMediator _mediator;
+    private readonly ISkuVaultTokenRepository skuVaultTokenRepository;
 
-    public SkuVaultTokensController(IMediator mediator)
+    public SkuVaultTokensController(IMapper mapper, IMediator mediator, ISkuVaultTokenRepository skuVaultTokenRepository)
     {
+        _mapper = mapper;
         _mediator = mediator;
+        this.skuVaultTokenRepository = skuVaultTokenRepository;
     }
     
 
@@ -164,6 +171,50 @@ public class SkuVaultTokensController: ControllerBase
 
         return NoContent();
     }
+
+#if true
+    /// <summary>
+    /// Store SkuVault Token info into database
+    /// </summary>
+    /// <param name="skuVaultTokenForCreation">SkuVaultTokenForCreationDto</param>
+    /// <returns></returns>
+    [ProducesResponseType(typeof(SkuVaultTokenDto), 201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [Consumes("application/json")]
+    [Produces("application/json")]
+    [HttpPost]
+    [Route("StoreSkuVaultToken", Name = "StoreSkuVaultToken")]
+    public async Task<ActionResult<SkuVaultTokenDto>> StoreSkuVaultToken([FromBody] SkuVaultTokenForCreationDto skuVaultTokenForCreation)
+    {
+        if (!ModelState.IsValid)
+        {
+            throw new Exception(ModelState.ToString());
+        }
+
+        var all = skuVaultTokenRepository.Query();
+        var target = all.Where(x => x.CompanyId == skuVaultTokenForCreation.CompanyId).FirstOrDefault();
+        SkuVaultToken response = null;
+        if (target != null)
+        {
+            var updatedDto = _mapper.Map<SkuVaultTokenForUpdateDto>(skuVaultTokenForCreation);
+            target.Update(updatedDto);
+            response = target;
+        }
+        else
+        {
+            var createdDto = _mapper.Map<SkuVaultTokenForCreationDto>(skuVaultTokenForCreation);
+            response = SkuVaultToken.Create(createdDto);
+        }
+        //var skuVaultTokenParametersDto = new SkuVaultTokenParametersDto();
+        //var query = new GetSkuVaultTokenList.SkuVaultTokenListQuery(skuVaultTokenParametersDto);
+        //var queryResponse = await _mediator.Send(query);
+
+        //var result = await AddSkuVaultToken(skuVaultTokenForCreation);
+        return Ok(response);
+    }
+
+#endif
 
     // endpoint marker - do not delete this comment
 }

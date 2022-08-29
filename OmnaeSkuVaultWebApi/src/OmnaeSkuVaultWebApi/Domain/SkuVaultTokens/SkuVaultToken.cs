@@ -61,8 +61,8 @@ public class SkuVaultToken : BaseEntity
         SkuVaultCompanyId = skuVaultTokenForUpdateDto.SkuVaultCompanyId;
         IsRevoked = skuVaultTokenForUpdateDto.IsRevoked;
 
-        QueueDomainEvent(new SkuVaultTokenUpdated(){ Id = Id });
+        QueueDomainEvent(new SkuVaultTokenUpdated() { Id = Id });
     }
-    
-    protected SkuVaultToken() { } // For EF + Mocking
+
+    public SkuVaultToken() { } // For EF + Mocking
 }

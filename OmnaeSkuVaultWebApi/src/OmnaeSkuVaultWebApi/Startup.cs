@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using OmnaeSkuVaultWebApi.Databases;
 using OmnaeSkuVaultWebApi.Extensions.Services;
 using OmnaeSkuVaultWebApi.Services;
+using SkuVaultApiWrapper;
+using SkuVaultApiWrapper.DependencyInjection;
 
 namespace OmnaeSkuVaultWebApi
 {
@@ -29,13 +31,13 @@ namespace OmnaeSkuVaultWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
-
             services.AddSingleton<IConfiguration>(_config);
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddApiVersioningExtension();
+            services.AddSkuVaultApiWrapper(_config);
+
+
 
 #if false
             string conn = _config.GetConnectionString("OmnaeFinanceServiceDb");

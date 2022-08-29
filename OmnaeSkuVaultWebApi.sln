@@ -1,33 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{92F05950-A6C2-4F74-84D9-5B10C30D66C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{92F05950-A6C2-4F74-84D9-5B10C30D66C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OmnaeSkuVaultWebApi", "OmnaeSkuVaultWebApi", "{88CE5F23-99BF-4C6B-AFC4-6F48ED1B7FAD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6914E004-94FF-4D0C-AA81-7DF4241936CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmnaeSkuVaultWebApi", "OmnaeSkuVaultWebApi\src\OmnaeSkuVaultWebApi\OmnaeSkuVaultWebApi.csproj", "{AC37748F-9620-4F11-9610-42B9B393D9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmnaeSkuVaultWebApi", "OmnaeSkuVaultWebApi\src\OmnaeSkuVaultWebApi\OmnaeSkuVaultWebApi.csproj", "{AC37748F-9620-4F11-9610-42B9B393D9BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E391321B-4BDE-4822-A53B-C381C9817280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmnaeSkuVaultWebApi.IntegrationTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.IntegrationTests\OmnaeSkuVaultWebApi.IntegrationTests.csproj", "{FFD53834-6E60-41D9-9DD5-1654351E7F98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmnaeSkuVaultWebApi.IntegrationTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.IntegrationTests\OmnaeSkuVaultWebApi.IntegrationTests.csproj", "{FFD53834-6E60-41D9-9DD5-1654351E7F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmnaeSkuVaultWebApi.FunctionalTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.FunctionalTests\OmnaeSkuVaultWebApi.FunctionalTests.csproj", "{0FB87E7B-9D2B-4933-A031-DE7893DFF7F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmnaeSkuVaultWebApi.FunctionalTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.FunctionalTests\OmnaeSkuVaultWebApi.FunctionalTests.csproj", "{0FB87E7B-9D2B-4933-A031-DE7893DFF7F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmnaeSkuVaultWebApi.SharedTestHelpers", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.SharedTestHelpers\OmnaeSkuVaultWebApi.SharedTestHelpers.csproj", "{22F67078-7E39-4FC6-B7C6-76BAB3EAA42D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmnaeSkuVaultWebApi.SharedTestHelpers", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.SharedTestHelpers\OmnaeSkuVaultWebApi.SharedTestHelpers.csproj", "{22F67078-7E39-4FC6-B7C6-76BAB3EAA42D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmnaeSkuVaultWebApi.UnitTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.UnitTests\OmnaeSkuVaultWebApi.UnitTests.csproj", "{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmnaeSkuVaultWebApi.UnitTests", "OmnaeSkuVaultWebApi\tests\OmnaeSkuVaultWebApi.UnitTests\OmnaeSkuVaultWebApi.UnitTests.csproj", "{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SkuVaultApiWrapper", "SkuVaultApiWrapper", "{2E4B8FCA-1A5A-499F-A0EA-71BF417948DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkuVaultApiWrapper", "..\..\..\OmnaeSkuVaultWebApi\Omnae.SkuVault.WebApi\SkuVault\SkuVaultApiWrapper\SkuVaultApiWrapper.csproj", "{6E748420-B9FB-4EB0-8810-44A8567592B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{92F05950-A6C2-4F74-84D9-5B10C30D66C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -54,6 +55,13 @@ Global
 		{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E748420-B9FB-4EB0-8810-44A8567592B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E748420-B9FB-4EB0-8810-44A8567592B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E748420-B9FB-4EB0-8810-44A8567592B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E748420-B9FB-4EB0-8810-44A8567592B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6914E004-94FF-4D0C-AA81-7DF4241936CD} = {88CE5F23-99BF-4C6B-AFC4-6F48ED1B7FAD}
@@ -63,5 +71,9 @@ Global
 		{0FB87E7B-9D2B-4933-A031-DE7893DFF7F0} = {E391321B-4BDE-4822-A53B-C381C9817280}
 		{22F67078-7E39-4FC6-B7C6-76BAB3EAA42D} = {E391321B-4BDE-4822-A53B-C381C9817280}
 		{B216A5C9-EA0A-4FCE-AED6-A9C4C771CAD0} = {E391321B-4BDE-4822-A53B-C381C9817280}
+		{2E4B8FCA-1A5A-499F-A0EA-71BF417948DF} = {6914E004-94FF-4D0C-AA81-7DF4241936CD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {767ABC47-ECAF-4FE8-8507-9968958A5B75}
 	EndGlobalSection
 EndGlobal
