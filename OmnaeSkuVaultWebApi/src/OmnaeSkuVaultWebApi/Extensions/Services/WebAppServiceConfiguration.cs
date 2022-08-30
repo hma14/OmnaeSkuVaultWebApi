@@ -13,6 +13,8 @@ using Resources;
 using Sieve.Services;
 using System.Reflection;
 using SkuVaultApiWrapper;
+using SkuVaultApiWrapper.Models;
+using SkuVaultApiWrapper.DependencyInjection;
 
 public static class WebAppServiceConfiguration
 {
@@ -47,9 +49,17 @@ public static class WebAppServiceConfiguration
             typeAdapterConfig.Scan(Assembly.GetExecutingAssembly());
             var mapperConfig = new Mapper(typeAdapterConfig);
             builder.Services.AddSingleton<IMapper>(mapperConfig);
+            builder.Services.AddControllers().AddControllersAsServices();
 
-            
         }
+
+        var dir = Directory.GetCurrentDirectory();
+        var builder2 = new ConfigurationBuilder().SetBasePath(dir)
+                .AddUserSecrets<SkuVaultApiClientConfig>()
+                .Build();
+
+        //builder.Services.AddSkuVaultApiWrapper(builder2.GetSection("SkuVaultApiClientConfig"));
+        builder.Services.AddSkuVaultApiWrapper(builder2.GetSection("TenantToken"));
 
         builder.Services.AddHealthChecks();
         builder.Services.AddSwaggerExtension();
@@ -58,7 +68,7 @@ public static class WebAppServiceConfiguration
         builder.Services.AddSwaggerGen();
 
         // SkuVault Api
-        builder.Services.AddScoped<ISkuVaultApiClient, SkuVaultApiClient>();
+        //builder.Services.AddScoped<ISkuVaultApiClient, SkuVaultApiClient>();
     }
 
     /// <summary>

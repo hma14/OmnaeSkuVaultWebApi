@@ -4,6 +4,7 @@ using OmnaeSkuVaultWebApi.Extensions.Host;
 using OmnaeSkuVaultWebApi.Extensions.Services;
 using OmnaeSkuVaultWebApi;
 using OmnaeSkuVaultWebApi.Controllers.v1;
+using SkuVaultApiWrapper.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddLoggingConfiguration(builder.Environment);

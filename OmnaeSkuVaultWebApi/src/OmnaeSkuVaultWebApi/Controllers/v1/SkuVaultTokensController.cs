@@ -74,6 +74,27 @@ public class SkuVaultTokensController: ControllerBase
         return Ok(queryResponse);
     }
 
+    /// <summary>
+    /// Gets a single SkuVaultToken by ID.
+    /// </summary>
+    /// <response code="200">SkuVaultToken record returned successfully.</response>
+    /// <response code="400">SkuVaultToken has missing/invalid values.</response>
+    /// <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+    [ProducesResponseType(typeof(SkuVaultTokenDto), 200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [Produces("application/json")]
+    [HttpGet("{companyId:int}", Name = "GetSkuVaultTokenByCompanyId")]
+    public async Task<ActionResult<SkuVaultTokenDto>> GetSkuVaultTokenByCompanyId(int companyId)
+    {
+        SkuVaultTokenParametersDto skuVaultTokenParametersDto = new SkuVaultTokenParametersDto();
+        var query = new GetSkuVaultTokenList.SkuVaultTokenListQuery(new SkuVaultTokenParametersDto());
+        var queryResponse = await _mediator.Send(query);
+        var token = queryResponse.Where(x => x.CompanyId == companyId).FirstOrDefault();
+
+        return token;
+    }
+
 
     /// <summary>
     /// Gets a list of all SkuVaultTokens.

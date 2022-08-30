@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MapsterMapper;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos;
+using OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Services;
+using OmnaeSkuVaultWebApi.Dtos;
 using SkuVaultApiWrapper;
 using SkuVaultApiWrapper.Extensions;
 using SkuVaultApiWrapper.Models;
@@ -14,12 +18,14 @@ namespace OmnaeSkuVaultWebApi.Controllers.v1
     [ApiController]
     [ApiVersion("1.0")]
     public class SkuVaultAccessController : ControllerBase
-    {
-        private readonly SkuVaultApiClient _skuVaultApiClient;
+    {     
+        private readonly HttpClient httpClient;
+        private readonly SkuVaultTokensController skuVaultTokensController;
 
-        public SkuVaultAccessController(SkuVaultApiClient skuVaultApiClient)
+        public SkuVaultAccessController(HttpClient httpClient, SkuVaultTokensController skuVaultTokensController)
         {
-            _skuVaultApiClient = skuVaultApiClient;
+            this.httpClient = httpClient;
+            this.skuVaultTokensController = skuVaultTokensController;
         }
 
 
@@ -28,13 +34,13 @@ namespace OmnaeSkuVaultWebApi.Controllers.v1
         [ProducesResponseType(500)]
         [Produces("application/json")]
         [HttpGet]
-        [Route("GetBrands", Name = "GetBrands")]
-        public async Task<IActionResult> GetBrands()
+        [Route("GetBrands/{companyId:int}", Name = "GetBrands")]
+        public async Task<IActionResult> GetBrands(int companyId)
         {
+            var skuVaultApiClient = GetSkuVaultApiClient(companyId);
             var request = new GetBrandsRequest();
+            var brands = await skuVaultApiClient.GetBrands(request);
 
-            var brands = await SkuVaultApiClientExtensions.GetBrands(_skuVaultApiClient, request);
-            
             return Ok(brands);
         }
 
@@ -45,15 +51,26 @@ namespace OmnaeSkuVaultWebApi.Controllers.v1
         [Produces("application/json")]
         [HttpPost]
         [Route("CreateBrands", Name = "CreateBrands")]
-        public async Task<IActionResult> CreateBrands()
+        public async Task<IActionResult> CreateBrands([FromBody] CreateBrandsDto dto)
         {
-            var request = new CreateBrandsRequest { Brands = new List<Brand> { new Brand { Name = "ApiCreatedBrand1" }, new Brand { Name = "ApiCreatedBrand2" } } };
-            var response = await _skuVaultApiClient.CreateBrands(request);
+            var request = new CreateBrandsRequest { Brands = dto.Brands };
+            var skuVaultApiClient = GetSkuVaultApiClient(dto.CompanyId);
+            var response = await skuVaultApiClient.CreateBrands(request);
             if (response.Errors.Any())
             {
                 throw new Exception($"Errors Exist: {response.Errors.Any()} --- Status: {response.Status}");
             }
             return Ok(response);
+        }
+
+        private SkuVaultApiClient GetSkuVaultApiClient(int companyId)
+        {
+            var token = skuVaultTokensController.GetSkuVaultTokenByCompanyId(companyId).Result.Value;
+            if (token == null)
+                throw new Exception("No entry was found in SkuVaultToken table");
+
+            var config = new SkuVaultApiClientConfig(token.TenantToken, token.UserToken);
+            return new SkuVaultApiClient(httpClient, config);
         }
     }
 }

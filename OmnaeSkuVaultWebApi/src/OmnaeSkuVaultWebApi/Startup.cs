@@ -6,6 +6,7 @@ using OmnaeSkuVaultWebApi.Extensions.Services;
 using OmnaeSkuVaultWebApi.Services;
 using SkuVaultApiWrapper;
 using SkuVaultApiWrapper.DependencyInjection;
+using SkuVaultApiWrapper.Models;
 
 namespace OmnaeSkuVaultWebApi
 {
@@ -13,13 +14,15 @@ namespace OmnaeSkuVaultWebApi
     {
         public IConfiguration _config { get; }
         public ICurrentUserService currentUserService { get; set; }
-        public IMediator mediator { get; set; }
+        public IMediator mediator { get;  }
+        public HttpClient httpClient { get;  }
 
-        public Startup(IConfiguration config, ICurrentUserService currentUserService, IMediator mediator)
+        public Startup(IConfiguration config, ICurrentUserService currentUserService, IMediator mediator, HttpClient httpClient)
         {
             _config = config;
             this.currentUserService = currentUserService;   
             this.mediator = mediator;
+            this.httpClient = httpClient;
         }
 
         
@@ -35,7 +38,9 @@ namespace OmnaeSkuVaultWebApi
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddApiVersioningExtension();
-            services.AddSkuVaultApiWrapper(_config);
+
+
+            
 
 
 

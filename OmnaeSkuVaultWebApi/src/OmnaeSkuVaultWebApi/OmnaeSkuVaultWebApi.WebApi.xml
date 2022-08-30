@@ -82,6 +82,14 @@
             <response code="400">SkuVaultToken has missing/invalid values.</response>
             <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
         </member>
+        <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.GetSkuVaultTokenByCompanyId(System.Int32)">
+            <summary>
+            Gets a single SkuVaultToken by ID.
+            </summary>
+            <response code="200">SkuVaultToken record returned successfully.</response>
+            <response code="400">SkuVaultToken has missing/invalid values.</response>
+            <response code="500">There was an error on the server while creating the SkuVaultToken.</response>
+        </member>
         <member name="M:OmnaeSkuVaultWebApi.Controllers.v1.SkuVaultTokensController.GetSkuVaultTokens(OmnaeSkuVaultWebApi.Domain.SkuVaultTokens.Dtos.SkuVaultTokenParametersDto)">
              <summary>
              Gets a list of all SkuVaultTokens.
